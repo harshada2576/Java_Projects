@@ -1,0 +1,41 @@
+// Custom Exception 
+class TimeExceededException extends Exception { 
+    public TimeExceededException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// Exam Class 
+class Exam { 
+    private static final int MAX_DURATION = 60; // 60 
+minutes 
+ 
+    public void submitExam(int timeTaken) throws 
+TimeExceededException { 
+        if (timeTaken > MAX_DURATION) { 
+            throw new TimeExceededException("Time limit 
+exceeded! Exam submission failed."); 
+        } 
+        System.out.println("Exam submitted successfully!"); 
+    } 
+} 
+ 
+// Main Class 
+public class H4 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        Exam exam = new Exam(); 
+ 
+        System.out.print("Enter time taken (in minutes) to 
+submit the exam: "); 
+        int timeTaken = sc.nextInt(); 
+ 
+        try { 
+            exam.submitExam(timeTaken); 
+        } catch (TimeExceededException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
