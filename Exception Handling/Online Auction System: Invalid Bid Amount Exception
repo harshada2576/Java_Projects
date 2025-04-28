@@ -1,0 +1,44 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidBidAmountException extends Exception { 
+    public InvalidBidAmountException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// Auction Class 
+class Auction { 
+    public void placeBid(double bidAmount, double 
+currentHighestBid) throws InvalidBidAmountException { 
+        if (bidAmount <= currentHighestBid) { 
+            throw new InvalidBidAmountException("Bid must be 
+higher than the current highest bid of $" + 
+currentHighestBid); 
+        } 
+        System.out.println("Bid placed successfully! Your bid: 
+$" + bidAmount); 
+    } 
+} 
+ 
+// Main Class 
+public class H27 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        Auction auction = new Auction(); 
+ 
+        double currentHighestBid = 100.00; // Example highest 
+bid 
+ 
+        System.out.print("Enter your bid amount: "); 
+        double bidAmount = sc.nextDouble(); 
+ 
+        try { 
+            auction.placeBid(bidAmount, currentHighestBid); 
+        } catch (InvalidBidAmountException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
