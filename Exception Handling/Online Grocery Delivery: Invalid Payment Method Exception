@@ -1,0 +1,54 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidPaymentMethodException extends Exception 
+{ 
+    public InvalidPaymentMethodException(String message) 
+{ 
+        super(message); 
+    } 
+} 
+ 
+// GroceryDelivery Class 
+class GroceryDelivery { 
+    private static final String[] validPaymentMethods = 
+{"Credit Card", "Debit Card", "UPI"}; 
+ 
+    public void choosePaymentMethod(String 
+paymentMethod) throws InvalidPaymentMethodException 
+{ 
+        boolean isValid = false; 
+        for (String method : validPaymentMethods) { 
+            if (method.equalsIgnoreCase(paymentMethod)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidPaymentMethodException("Invalid 
+payment method! Choose Credit Card, Debit Card, or 
+UPI."); 
+        } 
+        System.out.println("Payment method selected: " + 
+paymentMethod); 
+    } 
+} 
+ 
+// Main Class 
+public class H22 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        GroceryDelivery delivery = new GroceryDelivery(); 
+ 
+        System.out.print("Enter payment method: "); 
+        String paymentMethod = sc.nextLine(); 
+ 
+        try { 
+            delivery.choosePaymentMethod(paymentMethod); 
+        } catch (InvalidPaymentMethodException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
