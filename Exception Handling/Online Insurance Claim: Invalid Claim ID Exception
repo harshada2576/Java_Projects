@@ -1,0 +1,50 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidClaimIDException extends Exception { 
+    public InvalidClaimIDException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// InsuranceClaim Class 
+class InsuranceClaim { 
+    private static final String[] validClaimIDs = {"CL101", 
+"CL102", "CL103"}; 
+ 
+    public void fileClaim(String claimId) throws 
+InvalidClaimIDException { 
+        boolean isValid = false; 
+        for (String id : validClaimIDs) { 
+            if (id.equals(claimId)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidClaimIDException("Invalid Claim 
+ID! Please enter a correct ID."); 
+        } 
+        System.out.println("Insurance claim filed 
+successfully! Claim ID: " + claimId); 
+    } 
+} 
+ 
+// Main Class 
+public class H24 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        InsuranceClaim claim = new InsuranceClaim(); 
+ 
+        System.out.print("Enter Claim ID: "); 
+        String claimId = sc.next(); 
+ 
+        try { 
+            claim.fileClaim(claimId); 
+        } catch (InvalidClaimIDException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
