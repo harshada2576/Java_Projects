@@ -1,0 +1,52 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidSeatPreferenceException extends Exception { 
+    public InvalidSeatPreferenceException(String message) 
+{ 
+        super(message); 
+    } 
+} 
+ 
+// FlightCheckIn Class 
+class FlightCheckIn { 
+    private static final String[] validPreferences = {"Window", 
+"Aisle", "Middle"}; 
+ 
+    public void chooseSeatPreference(String 
+seatPreference) throws InvalidSeatPreferenceException { 
+        boolean isValid = false; 
+        for (String pref : validPreferences) { 
+            if (pref.equalsIgnoreCase(seatPreference)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidSeatPreferenceException("Invalid 
+preference! Choose Window, Aisle, or Middle."); 
+        } 
+        System.out.println("Seat preference selected: " + 
+seatPreference); 
+    } 
+} 
+ 
+// Main Class 
+public class H23 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        FlightCheckIn checkIn = new FlightCheckIn(); 
+ 
+        System.out.print("Enter seat preference (Window, 
+Aisle, Middle): "); 
+        String seatPreference = sc.nextLine(); 
+ 
+        try { 
+            checkIn.chooseSeatPreference(seatPreference); 
+        } catch (InvalidSeatPreferenceException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+} 
