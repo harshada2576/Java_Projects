@@ -1,0 +1,51 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidEventIDException extends Exception { 
+    public InvalidEventIDException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// EventRegistration Class 
+class EventRegistration { 
+    private static final String[] validEventIDs = {"E101", 
+"E102", "E103"}; 
+ 
+    public void registerEvent(String eventId) throws 
+InvalidEventIDException { 
+        boolean isValid = false; 
+        for (String id : validEventIDs) { 
+            if (id.equals(eventId)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidEventIDException("Invalid Event 
+ID! Please enter a valid event."); 
+        } 
+        System.out.println("Registered successfully for event: 
+" + eventId); 
+    } 
+} 
+ 
+// Main Class 
+public class H19 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        EventRegistration registration = new 
+EventRegistration(); 
+ 
+        System.out.print("Enter Event ID: "); 
+        String eventId = sc.next(); 
+ 
+        try { 
+            registration.registerEvent(eventId); 
+        } catch (InvalidEventIDException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
