@@ -1,0 +1,51 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidShowtimeException extends Exception { 
+    public InvalidShowtimeException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// MovieBooking Class 
+class MovieBooking { 
+    private static final String[] validShowtimes = {"10:00 AM", 
+"2:00 PM", "6:00 PM"}; 
+ 
+    public void bookTicket(String showtime) throws 
+InvalidShowtimeException { 
+        boolean isValid = false; 
+        for (String time : validShowtimes) { 
+            if (time.equalsIgnoreCase(showtime)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidShowtimeException("Invalid 
+showtime! Choose from 10:00 AM, 2:00 PM, or 6:00 PM."); 
+        } 
+        System.out.println("Ticket booked successfully for " + 
+showtime); 
+    } 
+} 
+ 
+// Main Class 
+public class H21 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        MovieBooking booking = new MovieBooking(); 
+ 
+        System.out.print("Enter showtime (e.g., 10:00 AM): "); 
+        sc.nextLine(); // Consume newline 
+        String showtime = sc.nextLine(); 
+ 
+        try { 
+            booking.bookTicket(showtime); 
+        } catch (InvalidShowtimeException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
