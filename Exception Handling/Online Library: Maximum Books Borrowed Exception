@@ -1,0 +1,45 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class MaximumBooksBorrowedException extends 
+Exception { 
+    public MaximumBooksBorrowedException(String 
+message) { 
+        super(message); 
+    } 
+} 
+ 
+// Library Class 
+class Library { 
+    private static final int MAX_BOOKS = 5; 
+ 
+    public void borrowBook(int numberOfBooks) throws 
+MaximumBooksBorrowedException { 
+        if (numberOfBooks > MAX_BOOKS) { 
+            throw new MaximumBooksBorrowedException("You 
+cannot borrow more than " + MAX_BOOKS + " books at a 
+time."); 
+        } 
+        System.out.println("Books borrowed successfully! 
+Total books: " + numberOfBooks); 
+    } 
+} 
+ 
+// Main Class 
+public class H28 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        Library library = new Library(); 
+ 
+        System.out.print("Enter number of books to borrow: "); 
+        int numberOfBooks = sc.nextInt(); 
+ 
+        try { 
+            library.borrowBook(numberOfBooks); 
+        } catch (MaximumBooksBorrowedException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
