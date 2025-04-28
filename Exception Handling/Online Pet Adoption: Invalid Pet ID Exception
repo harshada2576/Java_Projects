@@ -1,0 +1,50 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidPetIDException extends Exception { 
+    public InvalidPetIDException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// PetAdoption Class 
+class PetAdoption { 
+    private static final String[] validPetIDs = {"P101", "P102", 
+"P103"}; 
+ 
+    public void adoptPet(String petId) throws 
+InvalidPetIDException { 
+        boolean isValid = false; 
+        for (String id : validPetIDs) { 
+            if (id.equals(petId)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidPetIDException("Invalid Pet ID! 
+Please enter a valid ID."); 
+        } 
+        System.out.println("Pet adopted successfully! Pet ID: " 
++ petId); 
+    } 
+} 
+ 
+// Main Class 
+public class H25 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        PetAdoption adoption = new PetAdoption(); 
+ 
+        System.out.print("Enter Pet ID to adopt: "); 
+        String petId = sc.next(); 
+ 
+        try { 
+            adoption.adoptPet(petId); 
+        } catch (InvalidPetIDException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
