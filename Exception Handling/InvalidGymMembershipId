@@ -1,0 +1,54 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidMembershipTypeException extends Exception 
+{ 
+    public InvalidMembershipTypeException(String 
+message) { 
+        super(message); 
+    } 
+} 
+ 
+// GymMembership Class 
+class GymMembership { 
+    private static final String[] validMembershipTypes = 
+{"Basic", "Premium", "Gold"}; 
+ 
+    public void chooseMembership(String membershipType) 
+throws InvalidMembershipTypeException { 
+        boolean isValid = false; 
+        for (String type : validMembershipTypes) { 
+            if (type.equalsIgnoreCase(membershipType)) { 
+                isValid = true; 
+                break; 
+            } 
+        } 
+        if (!isValid) { 
+            throw new InvalidMembershipTypeException("Invalid 
+membership type! Choose Basic, Premium, or Gold."); 
+        } 
+        System.out.println("Membership chosen successfully: 
+" + membershipType); 
+    } 
+} 
+ 
+// Main Class 
+public class H20 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        GymMembership membership = new 
+GymMembership(); 
+ 
+        System.out.print("Enter Membership Type (Basic, 
+Premium, Gold): "); 
+        String membershipType = sc.next(); 
+ 
+        try { 
+            membership.chooseMembership(membershipType); 
+        } catch (InvalidMembershipTypeException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
