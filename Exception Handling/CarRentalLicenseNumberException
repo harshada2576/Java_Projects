@@ -1,0 +1,45 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidLicenseNumberException extends 
+Exception { 
+    public InvalidLicenseNumberException(String 
+message) { 
+        super(message); 
+    } 
+} 
+ 
+// CarRental Class 
+class CarRental { 
+    public void rentCar(String licenseNumber) throws 
+InvalidLicenseNumberException { 
+        if (licenseNumber.length() != 8 || 
+!licenseNumber.matches("[A-Za-z0-9]+")) { 
+            throw new 
+InvalidLicenseNumberException("Invalid license 
+number! It must be 8 alphanumeric characters."); 
+        } 
+        System.out.println("Car rented successfully with 
+License: " + licenseNumber); 
+    } 
+} 
+ 
+// Main Class 
+public class H18 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        CarRental rental = new CarRental(); 
+ 
+        System.out.print("Enter license number (8 
+characters): "); 
+        String licenseNumber = sc.next(); 
+ 
+        try { 
+            rental.rentCar(licenseNumber); 
+        } catch (InvalidLicenseNumberException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
