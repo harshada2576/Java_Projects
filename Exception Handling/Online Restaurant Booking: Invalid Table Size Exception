@@ -1,0 +1,41 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidTableSizeException extends Exception { 
+    public InvalidTableSizeException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// RestaurantBooking Class 
+class RestaurantBooking { 
+    public void bookTable(int tableSize) throws 
+InvalidTableSizeException { 
+        if (tableSize < 1 || tableSize > 10) { 
+            throw new InvalidTableSizeException("Invalid table 
+size! Choose between 1 and 10 people."); 
+        } 
+        System.out.println("Table booked successfully for " + 
+tableSize + " people."); 
+    } 
+} 
+ 
+// Main Class 
+public class H30 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        RestaurantBooking booking = new 
+RestaurantBooking(); 
+ 
+        System.out.print("Enter table size (1-10 people): "); 
+        int tableSize = sc.nextInt(); 
+ 
+        try { 
+            booking.bookTable(tableSize); 
+        } catch (InvalidTableSizeException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
