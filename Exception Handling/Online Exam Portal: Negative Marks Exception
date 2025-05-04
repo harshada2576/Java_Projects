@@ -1,0 +1,40 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class NegativeMarksException extends Exception { 
+    public NegativeMarksException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// Exam Class 
+class Exam { 
+    public void calculateMarks(int marks) throws 
+NegativeMarksException { 
+        if (marks < 0) { 
+            throw new NegativeMarksException("Marks cannot 
+be negative! Please enter a valid score."); 
+        } 
+        System.out.println("Marks recorded successfully: " + 
+marks); 
+    } 
+} 
+ 
+// Main Class 
+public class H29 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        Exam exam = new Exam(); 
+ 
+        System.out.print("Enter your marks: "); 
+        int marks = sc.nextInt(); 
+ 
+        try { 
+            exam.calculateMarks(marks); 
+        } catch (NegativeMarksException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+} 
