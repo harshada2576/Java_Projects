@@ -1,0 +1,42 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidEventCapacityException extends Exception { 
+    public InvalidEventCapacityException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// EventManagement Class 
+class EventManagement { 
+    public void createEvent(int capacity) throws 
+InvalidEventCapacityException { 
+        if (capacity < 10 || capacity > 1000) { 
+            throw new InvalidEventCapacityException("Invalid 
+event capacity! Choose between 10 and 1000 
+attendees."); 
+        } 
+        System.out.println("Event created successfully with a 
+capacity of " + capacity + " attendees."); 
+    } 
+} 
+ 
+// Main Class 
+public class H32 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        EventManagement event = new EventManagement(); 
+ 
+        System.out.print("Enter event capacity (10-1000 
+people): "); 
+        int capacity = sc.nextInt(); 
+ 
+        try { 
+            event.createEvent(capacity); 
+        } catch (InvalidEventCapacityException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
