@@ -1,0 +1,40 @@
+import java.util.Scanner; 
+ 
+// Custom Exception 
+class InvalidRideDistanceException extends Exception { 
+    public InvalidRideDistanceException(String message) { 
+        super(message); 
+    } 
+} 
+ 
+// Carpooling Class 
+class Carpooling { 
+    public void oAerRide(int distance) throws 
+InvalidRideDistanceException { 
+        if (distance < 1 || distance > 100) { 
+            throw new InvalidRideDistanceException("Invalid 
+ride distance! Choose between 1 km and 100 km."); 
+        } 
+        System.out.println("Ride oAered successfully for " + 
+distance + " km."); 
+    } 
+} 
+ 
+// Main Class 
+public class H31 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        Carpooling carpool = new Carpooling(); 
+ 
+        System.out.print("Enter ride distance (1-100 km): "); 
+        int distance = sc.nextInt(); 
+ 
+        try { 
+            carpool.oAerRide(distance); 
+        } catch (InvalidRideDistanceException e) { 
+            System.out.println("Error: " + e.getMessage()); 
+        } 
+ 
+        sc.close(); 
+    } 
+}
