@@ -1,1 +1,20 @@
-
+package p1; 
+ 
+public class ContractEmployee extends 
+Employee { 
+    private int contractDuration; 
+ 
+    public ContractEmployee(int employeeId, 
+String name, double salary, int 
+contractDuration) { 
+        super(employeeId, name, salary); 
+        this.contractDuration = contractDuration; 
+    } 
+ 
+    @Override 
+    public void displayDetails() { 
+        super.displayDetails(); 
+        System.out.println("Contract Duration: " + 
+contractDuration + " months"); 
+    } 
+}
