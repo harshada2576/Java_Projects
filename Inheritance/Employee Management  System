@@ -1,0 +1,121 @@
+package p1; 
+ 
+public class Employee { 
+    protected int employeeId; 
+    protected String name; 
+    protected double salary; 
+ 
+    public Employee(int employeeId, String 
+name, double salary) { 
+        this.employeeId = employeeId; 
+        this.name = name; 
+        this.salary = salary; 
+    } 
+ 
+    public void displayDetails() { 
+        System.out.println("ID: " + employeeId + ", 
+Name: " + name + ", Salary: " + salary); 
+    } 
+} 
+ 
+ 
+package p1; 
+ 
+public class Employee { 
+    protected int employeeId; 
+    protected String name; 
+    protected double salary; 
+ 
+    public Employee(int employeeId, String 
+name, double salary) { 
+        this.employeeId = employeeId; 
+        this.name = name; 
+        this.salary = salary; 
+    } 
+ 
+    public void displayDetails() { 
+        System.out.println("ID: " + employeeId + ", 
+Name: " + name + ", Salary: " + salary); 
+    } 
+} 
+ 
+ 
+package p1; 
+ 
+public class RegularEmployee extends Employee 
+{ 
+    public RegularEmployee(int employeeId, 
+String name, double salary) { 
+        super(employeeId, name, salary); 
+    } 
+} 
+ 
+ 
+ 
+package p1; 
+ 
+public class ContractEmployee extends 
+Employee { 
+    private int contractDuration; 
+ 
+    public ContractEmployee(int employeeId, 
+String name, double salary, int 
+contractDuration) { 
+        super(employeeId, name, salary); 
+        this.contractDuration = contractDuration; 
+    } 
+ 
+    @Override 
+    public void displayDetails() { 
+        super.displayDetails(); 
+        System.out.println("Contract Duration: " + 
+contractDuration + " months"); 
+    } 
+} 
+ 
+ 
+ 
+import p1.*; 
+import java.util.Scanner; 
+ 
+public class EmployeeManagementSystem { 
+    public static void main(String[] args) { 
+        Scanner scanner = new 
+Scanner(System.in); 
+ 
+        System.out.println("Enter Regular 
+Employee Details:"); 
+        System.out.print("ID: "); 
+        int regId = scanner.nextInt(); 
+        scanner.nextLine(); // Consume newline 
+        System.out.print("Name: "); 
+        String regName = scanner.nextLine(); 
+        System.out.print("Salary: "); 
+        double regSalary = scanner.nextDouble(); 
+        RegularEmployee regEmp = new 
+RegularEmployee(regId, regName, regSalary); 
+ 
+        System.out.println("\nEnter Contract 
+Employee Details:"); 
+        System.out.print("ID: "); 
+        int conId = scanner.nextInt(); 
+        scanner.nextLine(); 
+        System.out.print("Name: "); 
+        String conName = scanner.nextLine(); 
+        System.out.print("Salary: "); 
+        double conSalary = scanner.nextDouble(); 
+        System.out.print("Contract Duration 
+(months): "); 
+        int duration = scanner.nextInt(); 
+        ContractEmployee conEmp = new 
+ContractEmployee(conId, conName, conSalary, 
+duration); 
+ 
+        System.out.println("\nEmployee Details:"); 
+        regEmp.displayDetails(); 
+        System.out.println(); 
+        conEmp.displayDetails(); 
+ 
+        scanner.close(); 
+    } 
+}
