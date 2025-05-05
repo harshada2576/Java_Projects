@@ -1,0 +1,42 @@
+import p2.*;
+import java.util.Scanner;
+
+public class S2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Car Details:");
+        System.out.print("Vehicle ID: ");
+        String carId = scanner.next();
+        System.out.print("Brand: ");
+        String carBrand = scanner.next();
+        System.out.print("Rental Price Per Day: ");
+        double carPrice = scanner.nextDouble();
+        System.out.print("Number of Seats: ");
+        int seats = scanner.nextInt();
+        Car car = new Car(carId, carBrand, carPrice, seats);
+
+        System.out.println("\nEnter Luxury Car Details:");
+        System.out.print("Vehicle ID: ");
+        String luxId = scanner.next();
+        System.out.print("Brand: ");
+        String luxBrand = scanner.next();
+        System.out.print("Rental Price Per Day: ");
+        double luxPrice = scanner.nextDouble();
+        System.out.print("Number of Seats: ");
+        int luxSeats = scanner.nextInt();
+        System.out.print("Has Sunroof? (true/false): ");
+        boolean hasSunroof = scanner.nextBoolean();
+        LuxuryCar luxCar = new LuxuryCar(luxId, luxBrand, luxPrice, luxSeats, hasSunroof);
+
+        System.out.println("\nRental Details for 5 Days:");
+        car.displayDetails();
+        System.out.println("Total Cost for 5 Days: " + car.calculateRentalCost(5));
+
+        System.out.println();
+        luxCar.displayDetails();
+        System.out.println("Total Cost for 5 Days: " + luxCar.calculateRentalCost(5));
+
+        scanner.close();
+    }
+}
