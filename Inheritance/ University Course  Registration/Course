@@ -1,0 +1,15 @@
+package p3;
+
+public class Course {
+    protected String courseCode;
+    protected String courseName;
+
+    public Course(String courseCode, String courseName) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+    }
+
+    public void displayCourseDetails() {
+        System.out.println("Course Code: " + courseCode + ", Course Name: " + courseName);
+    }
+}
